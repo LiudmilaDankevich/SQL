@@ -1,0 +1,80 @@
+Создание таблицы с внешним ключем 
+create table salary(
+id serial primary key,
+monthly_salary int not null
+)
+
+
+select * from salary;
+
+Наполнение таблица данными
+insert into salary(monthly_salary)
+values (1000),
+        (2000),
+        (1500),
+        (1600),
+        (1800),
+        (1900),
+        (2500),
+        (2400),
+        (3000),
+        (1500);
+ 
+ Создание таблицы с внешним ключем       
+create table roles(
+id serial primary key ,
+role_title varchar(50) unique not null
+);
+
+Наполнение таблица данными
+insert into roles(role_title)
+values ('Junior QA'),
+        ('Middle QA'),
+        ('Senior QA'),
+        ('Junior JS developer'),
+        ('Middle JS developer'),
+        ('Senior JS developer');
+       
+ Создание таблицы с внешним ключем      
+create table roles_salary(
+id serial primary key,
+id_role int not null,
+id_salary int not null,
+foreign key(id_role)
+	references roles(id),
+foreign key(id_salary)
+	references salary(id)
+);
+
+select * from salary;
+select * from roles;
+
+Наполнение таблица данными
+insert into roles_salary(id_role, id_salary)
+values (1, 1),
+		(2, 3),
+		(3, 7);
+	
+Обновление строки	
+update salary 
+set monthly_salary = 1800
+where id = 7;
+
+Удаление строки
+delete from salary 
+where id = 9
+
+добавление столбца
+alter table roles 
+add column parking int
+
+Переиименование столбца
+alter table roles 
+rename column parking to taxi;
+
+#даление столбца
+alter table roles 
+drop column taxi;
+
+
+       
